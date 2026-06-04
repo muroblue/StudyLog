@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StudyLog</title>
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
@@ -28,17 +28,14 @@
     <section class="task-section">
       <h2>タスク一覧</h2>
       <ul class="task-list">
-        <li class="task-item">
-          <span class="task-name">線形代数のレポート</span>
-          <span class="task-date">2025-06-10</span>
-          <button class="done-btn">完了</button>
-        </li>
-        <li class="task-item done">
-          <span class="task-name">アルゴリズムの課題</span>
-          <span class="task-date">2025-06-05</span>
-          <button class="done-btn">完了</button>
-        </li>
-      </ul>
+  {% for task in tasks %}
+  <li class="task-item {% if task.done %}done{% endif %}">
+    <span class="task-name">{{ task.name }}</span>
+    <span class="task-date">{{ task.date }}</span>
+    <button class="done-btn">完了</button>
+  </li>
+  {% endfor %}
+</ul>
     </section>
   </main>
 
