@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyLog</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 StudyLog</h1>
+    <p>タスク・学習記録管理</p>
+  </header>
+
+  <main>
+    <!-- タスク入力フォーム -->
+    <section class="form-section">
+      <h2>タスクを追加</h2>
+      <form>
+        <input type="text" placeholder="タスク名を入力" />
+        <input type="date" />
+        <button type="submit">追加</button>
+      </form>
+    </section>
+
+    <!-- タスク一覧 -->
+    <section class="task-section">
+      <h2>タスク一覧</h2>
+      <ul class="task-list">
+        <li class="task-item">
+          <span class="task-name">線形代数のレポート</span>
+          <span class="task-date">2025-06-10</span>
+          <button class="done-btn">完了</button>
+        </li>
+        <li class="task-item done">
+          <span class="task-name">アルゴリズムの課題</span>
+          <span class="task-date">2025-06-05</span>
+          <button class="done-btn">完了</button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>StudyLog &copy; 2025</p>
+  </footer>
+
+</body>
+</html>
