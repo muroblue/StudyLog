@@ -146,3 +146,16 @@ footer {
   color: #aaa;
   font-size: 0.95rem;
 }
+
+.form-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  min-height: 1em;
+}
