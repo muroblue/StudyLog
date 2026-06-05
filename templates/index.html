@@ -17,36 +17,23 @@
     <!-- タスク入力フォーム -->
     <section class="form-section">
       <h2>タスクを追加</h2>
-      <form action="/add" method="POST">
-        <input type="text" name="name" placeholder="タスク名を入力" required />
-        <input type="date" name="date" />
-        <button type="submit">追加</button>
-      </form>
+      <div class="form-row">
+        <input type="text" id="task-name" placeholder="タスク名を入力" />
+        <input type="date" id="task-date" />
+        <button id="add-btn">追加</button>
+      </div>
+      <p id="error-msg" class="error-msg"></p>
     </section>
 
     <!-- タスク一覧 -->
     <section class="task-section">
       <h2>タスク一覧</h2>
-      {% if tasks %}
-      <ul class="task-list">
-        {% for task in tasks %}
-        <li class="task-item {% if task['done'] %}done{% endif %}">
-          <span class="task-name">{{ task['name'] }}</span>
-          <span class="task-date">{{ task['date'] or '日付なし' }}</span>
-          <a href="/done/{{ task['id'] }}">
-            <button class="done-btn">
-              {% if task['done'] %}戻す{% else %}完了{% endif %}
-            </button>
-          </a>
-          <a href="/delete/{{ task['id'] }}">
-            <button class="delete-btn">削除</button>
-          </a>
-        </li>
-        {% endfor %}
+      <ul class="task-list" id="task-list">
+        <!-- JavaScriptで動的に生成 -->
       </ul>
-      {% else %}
-      <p class="empty">タスクがありません。追加してみましょう！</p>
-      {% endif %}
+      <p id="empty-msg" class="empty" style="display:none;">
+        タスクがありません。追加してみましょう！
+      </p>
     </section>
   </main>
 
@@ -54,5 +41,6 @@
     <p>StudyLog &copy; 2025</p>
   </footer>
 
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
