@@ -17,9 +17,9 @@
     <!-- タスク入力フォーム -->
     <section class="form-section">
       <h2>タスクを追加</h2>
-      <form>
-        <input type="text" placeholder="タスク名を入力" />
-        <input type="date" />
+      <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="タスク名を入力" required />
+        <input type="date" name="date" />
         <button type="submit">追加</button>
       </form>
     </section>
@@ -27,15 +27,26 @@
     <!-- タスク一覧 -->
     <section class="task-section">
       <h2>タスク一覧</h2>
+      {% if tasks %}
       <ul class="task-list">
-  {% for task in tasks %}
-  <li class="task-item {% if task.done %}done{% endif %}">
-    <span class="task-name">{{ task.name }}</span>
-    <span class="task-date">{{ task.date }}</span>
-    <button class="done-btn">完了</button>
-  </li>
-  {% endfor %}
-</ul>
+        {% for task in tasks %}
+        <li class="task-item {% if task['done'] %}done{% endif %}">
+          <span class="task-name">{{ task['name'] }}</span>
+          <span class="task-date">{{ task['date'] or '日付なし' }}</span>
+          <a href="/done/{{ task['id'] }}">
+            <button class="done-btn">
+              {% if task['done'] %}戻す{% else %}完了{% endif %}
+            </button>
+          </a>
+          <a href="/delete/{{ task['id'] }}">
+            <button class="delete-btn">削除</button>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="empty">タスクがありません。追加してみましょう！</p>
+      {% endif %}
     </section>
   </main>
 
