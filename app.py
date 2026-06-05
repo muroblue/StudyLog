@@ -58,5 +58,18 @@ def delete_task(task_id):
     conn.close()
     return jsonify({'message': '削除しました'})
 
+# 統計情報API
+@app.route('/api/stats', methods=['GET'])
+def get_stats():
+    conn = get_db()
+    total = conn.execute('SELECT COUNT(*) FROM tasks').fetchone()[0]
+    done  = conn.execute('SELECT COUNT(*) FROM tasks WHERE done = 1').fetchone()[0]
+    conn.close()
+    return jsonify({
+        'total': total,
+        'done': done,
+        'undone': total - done
+    })
+
 if __name__ == '__main__':
     app.run(debug=True)
